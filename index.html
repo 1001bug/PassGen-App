@@ -1,0 +1,716 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta http-equiv="cache-control" content="max-age=0" />
+  <meta http-equiv="cache-control" content="no-cache" />
+  <meta http-equiv="expires" content="0" />
+  <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+  <meta http-equiv="pragma" content="no-cache" />
+
+  <title>PassGen::App</title>
+  <link rel="stylesheet" href="css/style2.css">
+
+
+</head>
+<body>
+
+<div class="container">
+        <div class="header">
+            <h1>A Diceware password</h1>
+            <p>Choose the words in any order</p>
+        </div>
+        <div class="content">
+            <div class="selected-section">
+                <div class="selected-section-header">
+                    <button class="btn btn-clear" onclick="clearSelected()">Reset</button>
+                    <button  class="btn btn-reload" onclick="location.reload()">Refresh</button>
+                    </div>
+                <div class="selected-section-header" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));gap:8px;padding:4px">
+                <select id="set_sep" onchange="showPassword()">
+                <option value="-">Word-Word</option>
+                <option value="!">Word!Word</option>
+                <option value="@">Word@Word</option>
+                <option value="?">Word?Word</option>
+                <option value="#">Word#Word</option>
+                <option value="">WordWord</option>
+                </select>
+
+                <select id="set_caps" onchange="showPassword()">
+                <option value="1">Capitalize</option>
+                <option value="0">lowercase</option>
+                </select>
+
+                <select id="set_num" onchange="showPassword()">
+                <option value="9">One digit</option>
+                <option value="99">Two digits</option>
+                <option value="0">no digits</option>
+                </select>
+
+                <select id="set_tstyle" onchange="showPassword()">
+                <option value="A">Translit 1</option>
+                <option value="B">Translit 2</option>
+                <option value="C">TPaHcJluT</option>
+                </select>
+                </div>
+
+
+            </div>
+            <div class="selected-words" id="selectedWords"></div>
+
+            <div  class="selected-box" id="selectedBox">
+                <div class="selected-password" id="selectedPassword"></div>
+                <div class="is-hidden" id="selectedBoxBtns" style="text-align: end;">
+                    <button type="button" id="selectedBoxStat"></button>
+                    <button onclick="editPassword(true)">&#9998;</button>
+                    <button onclick="copyPasswordToClipboard()">&#128203;</button>
+                </div>
+            </div>
+            <div class="selected-password-edit is-hidden" id="selectedPasswordEdit">
+            <input id="selectedPasswordEditField" type="text" spellcheck="false">
+            <button onclick="copyPasswordToClipboard()">&#128203;</button>
+            </div>
+
+
+
+
+
+
+
+
+        <div id="group_box" style="display: grid;grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));gap: 10px;">
+<!-- multiple="multiple" -->
+
+
+<fieldset id="group_0" onchange="getCombo(this)" class="fieldset-container">
+<legend>group_0</legend>
+<label><input type="radio" name="group_0" value="" checked > &mdash;</label>
+
+<label>
+
+
+<input type="radio" name="group_0"  value="беретом">
+
+беретом
+
+</label>
+
+<label>
+
+
+<input type="radio" name="group_0"  value="беретесь">
+
+беретесь
+
+</label>
+
+<label>
+
+
+<input type="radio" name="group_0"  value="берете">
+
+берете
+
+</label>
+
+<label>
+
+
+<input type="radio" name="group_0"  value="берется">
+
+берется
+
+</label>
+
+<label>
+
+
+<input type="radio" name="group_0"  value="берет">
+
+берет (115) 
+
+</label>
+
+</fieldset>
+<!--/div-->
+
+<fieldset id="group_1" onchange="getCombo(this)" class="fieldset-container">
+<legend>group_1</legend>
+<label><input type="radio" name="group_1" value="" checked > &mdash;</label>
+
+<label>
+
+
+<input type="radio" name="group_1"  value="выказывали">
+
+выказывали
+
+</label>
+
+<label>
+
+
+<input type="radio" name="group_1"  value="выказывает">
+
+выказывает
+
+</label>
+
+<label>
+
+
+<input type="radio" name="group_1"  value="выказывала">
+
+выказывала
+
+</label>
+
+<label>
+
+
+<input type="radio" name="group_1"  value="выказывать">
+
+выказывать
+
+</label>
+
+<label>
+
+
+<input type="radio" name="group_1"  value="выказывал">
+
+выказывал
+
+</label>
+
+</fieldset>
+<!--/div-->
+
+<fieldset id="group_2" onchange="getCombo(this)" class="fieldset-container">
+<legend>group_2</legend>
+<label><input type="radio" name="group_2" value="" checked > &mdash;</label>
+
+<label>
+
+
+<input type="radio" name="group_2"  value="камедь">
+
+камедь
+
+</label>
+
+</fieldset>
+<!--/div-->
+
+<fieldset id="group_3" onchange="getCombo(this)" class="fieldset-container">
+<legend>group_3</legend>
+<label><input type="radio" name="group_3" value="" checked > &mdash;</label>
+
+<label>
+
+
+<input type="radio" name="group_3"  value="учиненного">
+
+учиненного
+
+</label>
+
+<label>
+
+
+<input type="radio" name="group_3"  value="учиненных">
+
+учиненных
+
+</label>
+
+</fieldset>
+<!--/div-->
+
+<fieldset id="group_4" onchange="getCombo(this)" class="fieldset-container">
+<legend>group_4</legend>
+<label><input type="radio" name="group_4" value="" checked > &mdash;</label>
+
+<label>
+
+
+<input type="radio" name="group_4"  value="молодник">
+
+молодник
+
+</label>
+
+</fieldset>
+<!--/div-->
+
+<fieldset id="group_5" onchange="getCombo(this)" class="fieldset-container">
+<legend>group_5</legend>
+<label><input type="radio" name="group_5" value="" checked > &mdash;</label>
+
+<label>
+
+
+<input type="radio" name="group_5" data-notranslit="1" value="[^JR3`">
+
+[^JR3`
+
+</label>
+
+<label>
+
+
+<input type="radio" name="group_5" data-notranslit="1" value="94d?&lt;T">
+
+94d?&lt;T
+
+</label>
+
+<label>
+
+
+<input type="radio" name="group_5" data-notranslit="1" value=";K~=9.">
+
+;K~=9.
+
+</label>
+
+<label>
+
+
+<input type="radio" name="group_5" data-notranslit="1" value="*LX4z/gN">
+
+*LX4z/gN
+
+</label>
+
+<label>
+
+
+<input type="radio" name="group_5" data-notranslit="1" value="b%pjX&lt;4g">
+
+b%pjX&lt;4g
+
+</label>
+
+<label>
+
+
+<input type="radio" name="group_5" data-notranslit="1" value="{w@3$tWK">
+
+{w@3$tWK
+
+</label>
+
+<label>
+
+
+<input type="radio" name="group_5" data-notranslit="1" value="VH:C3szr">
+
+VH:C3szr
+
+</label>
+
+<label>
+
+
+<input type="radio" name="group_5" data-notranslit="1" value="p{~,gv.q47L]">
+
+p{~,gv.q47L]
+
+</label>
+
+<label>
+
+
+<input type="radio" name="group_5" data-notranslit="1" value="-P4^$~ptn^+K">
+
+-P4^$~ptn^+K
+
+</label>
+
+<label>
+
+
+<input type="radio" name="group_5" data-notranslit="1" value="/NN;&amp;L&amp;=3?=d">
+
+/NN;&amp;L&amp;=3?=d
+
+</label>
+
+</fieldset>
+<!--/div-->
+
+
+        </div>
+
+
+
+
+        <div style="padding-top:10px">
+        <details>
+    <summary>Transliteration examples</summary>
+    <div class="schemas" id="schemas"></div>
+  </details>
+        </div>
+    </div>
+
+
+
+
+
+
+
+    <script>
+
+
+const simpleMap = {
+    'А': 'a', 'Б': 'b', 'В': 'v', 'Г': 'g', 'Д': 'd',
+    'Е': 'e', 'Ё': 'e', 'Ж': 'j', 'З': 'z', 'И': 'i',
+    'Й': 'i', 'К': 'k', 'Л': 'l', 'М': 'm', 'Н': 'n',
+    'О': 'o', 'П': 'p', 'Р': 'r', 'С': 's', 'Т': 't',
+    'У': 'u', 'Ф': 'f', 'Х': 'x', 'Ц': 'c', 'Ч': 'ch',
+    'Ш': 'sh', 'Щ': 'sh', 'Ъ': '', 'Ы': 'i', 'Ь': '',
+    'Э': 'e', 'Ю': 'yu', 'Я': 'ya', ' ': ' ', '.':'.'
+};
+const fullMap = {
+    'А': 'a', 'Б': 'b', 'В': 'v', 'Г': 'g', 'Д': 'd',
+    'Е': 'e', 'Ё': 'yo', 'Ж': 'zh', 'З': 'z', 'И': 'i',
+    'Й': 'j', 'К': 'k', 'Л': 'l', 'М': 'm', 'Н': 'n',
+    'О': 'o', 'П': 'p', 'Р': 'r', 'С': 's', 'Т': 't',
+    'У': 'u', 'Ф': 'f', 'Х': 'h', 'Ц': 'c', 'Ч': 'ch',
+    'Ш': 'sh', 'Щ': 'shh', 'Ъ': '#', 'Ы': 'y', 'Ь': '',
+    'Э': 'je', 'Ю': 'ju', 'Я': 'ja', ' ': ' ', '.':'.'
+};
+const volapukMap = {
+    'А': 'a', 'Б': '6', 'В': 'B', 'Г': 'r', 'Д': 'g',
+    'Е': 'e', 'Ё': 'E', 'Ж': '*', 'З': '3', 'И': 'u',
+    'Й': 'u~', 'К': 'k', 'Л': 'Jl', 'М': 'M', 'Н': 'H',
+    'О': 'O', 'П': 'n', 'Р': 'p', 'С': 'c', 'Т': 'm',
+    'У': 'y', 'Ф': '@', 'Х': 'x', 'Ц': 'U,', 'Ч': '4',
+    'Ш': 'w', 'Щ': 'W,', 'Ъ': 'b', 'Ы': 'bl', 'Ь': 'b',
+    'Э': '3', 'Ю': 'lO', 'Я': 'R', ' ': ' ', '.':'.'
+};
+
+function translit(text, charMap) {
+    return text.split('').map(char => {
+        const upperChar = char.toUpperCase();
+        return charMap[upperChar] ?? '?';
+}).join('');
+}
+
+
+function testTranslit(){
+const samples = [
+'Съешь же ещё этих мягких французских булок да выпей чаю',
+];
+let box = document.getElementById('schemas');
+samples.forEach((itemId) => {
+
+const div1 = document.createElement('h3');
+div1.textContent = itemId;
+box.appendChild(div1);
+
+const div2 = document.createElement('div');
+div2.textContent = translit(itemId,simpleMap);
+box.appendChild(div2);
+
+const div3 = document.createElement('div');
+div3.textContent = translit(itemId,fullMap);
+box.appendChild(div3);
+
+const div4 = document.createElement('div');
+div4.textContent = translit(itemId,volapukMap);
+box.appendChild(div4);
+
+
+});
+}
+
+
+let selectedIds = [];
+
+function getCombo(obj) {
+    console.log('getCombo2',obj.id,obj.querySelector('input:checked').value);
+
+    var value = obj.querySelector('input:checked').value;
+
+    if(value.length === 0){
+        selectedIds = selectedIds.filter(element => element !== obj.id)
+        console.log("remove",obj.id)
+    } else if (!selectedIds.includes(obj.id)) {
+        selectedIds.push(obj.id);
+        console.log("add",obj.id, value)
+    } else {
+        console.log("skip",obj.id)
+    }
+
+
+    showSelected();
+}
+
+function getCombo_OLD(selectObject) {
+    var value = selectObject.value;
+
+    for (const element of selectObject.options) {
+        if (element.selected){
+        console.log(element.selected,element.textContent,element.value)
+    }
+
+    }
+    console.log("OVERALL",selectObject.selectedIndex, selectObject.id)
+
+    if(selectObject.value.length === 0){
+        selectedIds = selectedIds.filter(element => element !== selectObject.id)
+        console.log("remove",selectObject.id)
+    } else if (!selectedIds.includes(selectObject.id)) {
+        selectedIds.push(selectObject.id);
+        console.log("add",selectObject.id, selectObject.value)
+    } else {
+        console.log("skip",selectObject.id)
+    }
+
+
+    showSelected();
+}//getCombo
+
+function showSelected() {
+            let words = [];
+            const box = document.getElementById('selectedWords');
+            box.innerHTML = '';
+
+            selectedIds.forEach((itemId) => {
+                let gr = document.getElementById(itemId);
+                var grVal = gr.querySelector('input:checked').value;
+
+                let html = `<div class="selected-badge" onclick="removeSelected(\'${itemId}\')"><span class="word-main">${grVal}</span></div>`;
+
+                words.push(html)
+            });
+            box.innerHTML = words.join('<div class="selected-badge-sep">&raquo;</div>');
+
+            showPassword();
+}
+function showSelected_OLD() {
+            let words = [];
+            const box = document.getElementById('selectedWords');
+            box.innerHTML = '';
+
+            selectedIds.forEach((itemId) => {
+                let gr = document.getElementById(itemId);
+                let grVal = gr.value;
+
+                let html = `<div class="selected-badge" onclick="removeSelected(\'${itemId}\')"><span class="word-main">${grVal}</span></div>`;
+
+                words.push(html)
+            });
+            box.innerHTML = words.join('<div class="selected-badge-sep">&raquo;</div>');
+
+            showPassword();
+}
+
+function showPassword(){
+//settings
+let set_sep = document.getElementById('set_sep')?.value ?? '-';
+let set_caps = document.getElementById('set_caps')?.value ?? '0';
+let set_num = parseInt(document.getElementById('set_num')?.value ?? '0' , 10);
+let set_tstyle = document.getElementById('set_tstyle')?.value ?? 'A';
+
+console.log('set_sep',set_sep,'set_caps',set_caps,'set_num',set_num,'set_tstyle',set_tstyle);
+const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
+
+let tokens = selectedIds.map(itemId => {
+
+
+    let radio = document.getElementById(itemId).querySelector('input:checked');
+    let word = radio.value;
+    let notranslit = radio.dataset.notranslit ?? '0';
+    //console.log('notranslit',notranslit);
+    /*
+    volapukMap
+fullMap
+simpleMap
+    */
+    if (notranslit == 1) {
+        console.log('notranslit! Skip modifications.',notranslit);
+    } else if (set_tstyle === 'C'){
+        word = translit(word,volapukMap);
+    } else {
+        if(set_tstyle === 'A'){
+            word = translit(word,simpleMap);
+        } else if (set_tstyle === 'B'){
+            word = translit(word,fullMap);
+        } else {
+            word = 'translit_error'
+        }
+
+        if(set_caps === '1') {
+            word = capitalize(word)
+        }
+        if(set_num > 0) {
+            word = word + getSecureRandomString(set_num);
+        }
+
+    }
+    return word;
+
+});
+
+let pwdStr = tokens.join(set_sep);
+
+console.log("TRANSLIT",tokens,pwdStr);
+
+let passBox = document.getElementById('selectedPassword');
+let editBox = document.getElementById('selectedPasswordEditField');
+let passBoxBtns = document.getElementById('selectedBoxBtns');
+let passBoxStat = document.getElementById('selectedBoxStat');
+
+
+const regexNum = /\d+/;
+const regexChar = /[A-Za-z]/;
+
+passBox.innerHTML = '';
+
+let spans = pwdStr.split('').map((char) => {
+    const symb = document.createElement('span');
+    if(regexNum.test(char)){
+        symb.className = 'ch-num';
+    } else if(regexChar.test(char)){
+        symb.className = 'ch-ch';
+    } else {
+        symb.className = 'ch-sp';
+    }
+    symb.textContent = char;
+    passBox.appendChild(symb)
+});
+
+//editBox.value = passBox.textContent;
+editBox.value = pwdStr
+//console.log(spans);
+
+passBoxBtns.classList.toggle("is-hidden", pwdStr.length == 0);
+//.join('');
+passBoxStat.textContent = `${tokens.length}:${pwdStr.length}`
+}
+
+
+function editPassword(mode){
+let passDiv = document.getElementById('selectedBox');
+let editDiv = document.getElementById('selectedPasswordEdit');
+if(mode){
+passDiv.classList.toggle("is-hidden");
+editDiv.classList.toggle("is-hidden");
+} else {
+passDiv.classList.remove("is-hidden");
+editDiv.classList.add("is-hidden");
+
+}
+}
+
+function clearSelected() {
+    const box = document.getElementById('group_box');
+
+    if (box) {
+        const fields = box.querySelectorAll('.fieldset-container')//('input[type="radio"][value=""]');
+        fields.forEach((field) => {
+            removeSelected(field.id);
+        });
+    }
+    editPassword(false);
+}
+
+function removeSelected(field_box) {
+            const field = document.getElementById(field_box);
+            console.log('removeSelected',field);
+            let radio = field.querySelector(`input[type="radio"][value=""]`);
+            radio.checked = true;
+            field.dispatchEvent(new Event('change'));
+
+}
+//===============
+
+
+
+
+        function copyPasswordToClipboard(){
+            let pass = document.getElementById('selectedPasswordEditField')?.value ?? 'error';
+            navigator.clipboard.writeText(pass).then(() => {
+                showNotification('Copied to clipboard!');
+            });
+        }
+
+        function showNotification(message) {
+            const notif = document.createElement('div');
+            notif.className = 'notification';
+            notif.textContent = message;
+            document.body.appendChild(notif);
+
+            setTimeout(() => {
+                notif.remove();
+            }, 2000);
+        }
+
+        function getSecureRandomString(maxRange) {
+  // 1. Validation: Ensure we have access to the crypto API
+  const cryptoObj = window.crypto || window.msCrypto; // 'window.msCrypto' is for older IE
+  if (!cryptoObj) {
+    throw new Error("Cryptography API not supported in this environment.");
+  }
+
+  // 2. Generate Randomness
+  // We create an array to hold one 32-bit unsigned integer.
+  // This gives us a number between 0 and 4,294,967,295.
+  const array = new Uint32Array(1);
+  cryptoObj.getRandomValues(array);
+
+  // 3. Calculate the Number
+  // We use the modulo operator (%) to wrap the huge random number
+  // into our desired range (0 to maxRange).
+  const randomValue = array[0] % (maxRange + 1);
+
+  // 4. Format Output
+  // If maxRange is 99 (or greater), we want to ensure 2 digits (e.g., "05").
+  // If maxRange is 9, we just want the single digit.
+  if (maxRange > 9) {
+    return randomValue.toString().padStart(2, '0');
+  } else {
+    return randomValue.toString();
+  }
+}
+        // Initialize
+        //renderWordLists();
+
+        window.onload = testTranslit;
+
+
+window.addEventListener('DOMContentLoaded', () => {
+    const selects = document.querySelectorAll('select');
+    selects.forEach(s => {
+        const saved = localStorage.getItem('select_' + s.id);
+        //if (saved) s.value = saved;
+        if (saved !== null) {s.value = saved};
+    });
+
+    selects.forEach(s => {
+        s.addEventListener('change', () => {
+            localStorage.setItem('select_' + s.id, s.value);
+        });
+    });
+
+
+});
+
+
+
+    </script>
+
+
+
+
+
+<div id="footer" style="padding:16px;font-size: small;font-variant: all-small-caps;background: lavender;">
+For online passwords only. Use a minimum of four words. You may add a string of random characters at the end. Capitalization, numbers, and separators have a negligible impact on password strength.
+</div>
+</body>
+</html>
