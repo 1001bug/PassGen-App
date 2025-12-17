@@ -1,7 +1,7 @@
 # PassGen-App [![Demo](https://img.shields.io/badge/demo-live-brightgreen)](https://1001bug.github.io/PassGen-App/)
 A Diceware password
 
-🔗 **Live demo:** [https://<username>.github.io/<repo>/](https://1001bug.github.io/PassGen-App/)
+🔗 **Live demo:** [https://1001bug.github.io/PassGen-App/](https://1001bug.github.io/PassGen-App/)
 
 The concept is to allow the user to build the password themselves. \
 The backend generates a page containing a selection of random, rare words. \
